@@ -1,0 +1,11 @@
+.item {
+  color: green;
+  display: flex;
+  align-items: center;
+  padding-bottom: 10px;
+}
+
+.postAvatar {
+  height: 50px;
+  width: auto;
+}

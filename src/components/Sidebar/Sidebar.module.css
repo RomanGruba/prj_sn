@@ -2,3 +2,16 @@
   grid-area: sidebar;
   background-color: lightgreen;
 }
+
+.list {
+  list-style: none;
+  padding-left: 20px;
+}
+
+.item a {
+  text-decoration: none;
+}
+
+.active {
+  color: blanchedalmond;
+}

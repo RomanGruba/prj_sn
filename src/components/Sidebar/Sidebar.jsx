@@ -4,20 +4,20 @@ import styles from "./Sidebar.module.css";
 const Sidebar = () => {
   return (
     <sidebar className={styles.sidebar}>
-      <ul>
-        <li>
+      <ul className={styles.list}>
+        <li className={styles.item}>
           <a href="#">Profile</a>
         </li>
-        <li>
+        <li className={styles.item}>
           <a href="#">Messages</a>
         </li>
-        <li>
+        <li className={styles.item}>
           <a href="#">News</a>
         </li>
-        <li>
+        <li className={styles.item}>
           <a href="#">Music</a>
         </li>
-        <li>
+        <li className={styles.item}>
           <a href="#">Settings</a>
         </li>
       </ul>

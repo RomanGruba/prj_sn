@@ -17,12 +17,20 @@ const MessageItem = props => {
 };
 
 const Dialogs = props => {
+  let dialogsData = [
+    { id: 1, name: "Dimich" },
+    { id: 2, name: "Andrey" },
+    { id: 3, name: "Roman" },
+    { id: 4, name: "Ivan" },
+    { id: 5, name: "Vadim" }
+  ];
+
   return (
     <div className={styles.dialogs}>
       <div className={styles.dialogsItems}>
-        <DialogsItem name="Dimich" id="1" />
-        <DialogsItem name="Andrey" id="2" />
-        <DialogsItem name="Roman" id="3" />
+        {dialogsData.map(d => (
+          <DialogsItem name={d.name} id={d.id} />
+        ))}
       </div>
       <div className={styles.messages}>
         <MessageItem message="Hi!" />

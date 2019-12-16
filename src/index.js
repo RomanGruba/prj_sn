@@ -17,7 +17,15 @@ let dialogs = [
   { id: 5, name: "Vadim" }
 ];
 
+let messages = [
+  { id: 1, message: "Hi!" },
+  { id: 2, message: "Hellow" },
+  { id: 3, message: "Good" },
+  { id: 4, message: "Perfect" },
+  { id: 5, message: "Yellow" }
+];
+
 ReactDOM.render(
-  <App posts={posts} dialogs={dialogs} />,
+  <App posts={posts} dialogs={dialogs} messages={messages} />,
   document.getElementById("root")
 );

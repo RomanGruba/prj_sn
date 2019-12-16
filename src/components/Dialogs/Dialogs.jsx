@@ -12,9 +12,9 @@ const Dialogs = props => {
         ))}
       </div>
       <div className={styles.messages}>
-        <Message message="Hi!" />
-        <Message message="Hellow" />
-        <Message message="Salut" />
+        {props.messages.map(message => (
+          <Message message={message} />
+        ))}
       </div>
     </div>
   );

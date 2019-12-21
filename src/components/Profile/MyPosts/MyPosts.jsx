@@ -6,15 +6,12 @@ const MyPosts = props => {
   let newPostElement = React.createRef();
 
   let addPost = () => {
-    let newPostText = newPostElement.current.value;
-    props.addPost(newPostText);
-    newPostElement.current.value = "";
-    props.changeNewPostText("");
+    props.addPost();
   };
 
   let changeTextArea = () => {
-    let newPostText = newPostElement.current.value;
-    props.changeNewPostText(newPostText);
+    let text = newPostElement.current.value;
+    props.changeNewPostText(text);
   };
 
   return (

@@ -8,12 +8,24 @@ const MyPosts = props => {
   let addPost = () => {
     let newPostText = newPostElement.current.value;
     props.addPost(newPostText);
+    newPostElement.current.value = "";
+    props.changeNewPostText("");
   };
+
+  let changeTextArea = () => {
+    let newPostText = newPostElement.current.value;
+    props.changeNewPostText(newPostText);
+  };
+
   return (
     <div className={styles.posts}>
       <h3> My posts</h3>
       <div>
-        <textarea ref={newPostElement}></textarea>
+        <textarea
+          ref={newPostElement}
+          value={props.newPostText}
+          onChange={changeTextArea}
+        />
         <div className={styles.addPostButton}>
           <button onClick={addPost}>Add post</button>
         </div>

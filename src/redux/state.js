@@ -1,8 +1,6 @@
 import profileReducer from "./profileReducer";
 import sidebarReducer from "./sidebarReducer";
 import dialogsReducer from "./dialogsReducer";
-const UPDATE_NEW_MESSAGE_BODY = "UPDATE_NEW_MESSAGE_BODY";
-const SEND_MESSAGE = "SEND_MESSAGE";
 
 let store = {
   _state: {
@@ -49,18 +47,6 @@ let store = {
     this._callSubscriber(this._state);
   }
 };
-
-export const addPostActionCreator = () => ({ type: "ADD_POST" });
-export const updateNewPostActionCreator = message => ({
-  type: "UPDATE_NEW_POST_TEXT",
-  text: message
-});
-
-export const sendMessageCreator = () => ({ type: SEND_MESSAGE });
-export const updateNewMessageBodyCreator = message => ({
-  type: UPDATE_NEW_MESSAGE_BODY,
-  body: message
-});
 
 export default store;
 window.store = store;

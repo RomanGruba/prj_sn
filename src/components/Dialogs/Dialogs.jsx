@@ -8,13 +8,15 @@ import {
 } from "../../redux/state";
 
 const Dialogs = props => {
-  let newMessageEl = React.createRef();
   let newMessageBody = props.state.newMessageBody;
+
   let onSendMessageClick = () => {
     props.dispatch(sendMessageCreator());
   };
-  let onUpdateMessageBody = () => {
-    let text = newMessageEl.current.value;
+
+  let onUpdateMessageBody = e => {
+    let text = e.target.value;
+
     props.dispatch(updateNewMessageBodyCreator(text));
   };
 
@@ -33,7 +35,6 @@ const Dialogs = props => {
         </div>
         <div>
           <textarea
-            ref={newMessageEl}
             value={newMessageBody}
             onChange={onUpdateMessageBody}
             placeholder="enter your message"

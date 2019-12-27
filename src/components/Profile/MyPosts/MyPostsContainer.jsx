@@ -14,8 +14,14 @@ let mapStateToProps = state => {
 
 let mapDispatchToProps = dispatch => {
   return {
-    changeTextArea: text => dispatch(updateNewPostActionCreator(text)),
-    addPost: () => dispatch(addPostActionCreator())
+    changeTextArea: text => {
+      let action = updateNewPostActionCreator(text);
+      dispatch(action);
+    },
+    addPost: () => {
+      console.log("ddd");
+      dispatch(addPostActionCreator());
+    }
   };
 };
 

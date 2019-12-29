@@ -5,7 +5,7 @@ import Sidebar from "./components/Sidebar/Sidebar";
 import Profile from "./components/Profile/ProfileInfo/Profile";
 import { Route, BrowserRouter } from "react-router-dom";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
-import Users from "./components/Users/Users";
+import UsersContainer from "./components/Users/UsersContainer";
 
 const App = () => {
   return (
@@ -14,12 +14,9 @@ const App = () => {
         <Header />
         <Sidebar />
         <div className="app-wrapper_content">
-          {/* <Route path="/profile" component={Profile} />
-          <Route path="/dialogs" component={Dialogs} /> */}
-
           <Route path="/profile" render={() => <Profile />} />
           <Route path="/dialogs" render={() => <DialogsContainer />} />
-          <Route path="/users" render={() => <Users />} />
+          <Route path="/users" render={() => <UsersContainer />} />
         </div>
       </div>
     </BrowserRouter>

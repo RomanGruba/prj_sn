@@ -1,4 +1,5 @@
 import React from "react";
+import styles from "./Users.module.css";
 
 let Users = props => {
   debugger;
@@ -8,10 +9,16 @@ let Users = props => {
         <div key={user.id}>
           <span>
             <div>
-              <img src={user.photoUrl} alt="" />
+              <img className={styles.userPhoto} src={user.photoUrl} alt="" />
             </div>
             <div>
-              <button>Follow</button>
+              {user.followed ? (
+                <button onClick={() => props.unfollow(user.id)}>
+                  Unfollow
+                </button>
+              ) : (
+                <button onClick={() => props.follow(user.id)}>Follow</button>
+              )}
             </div>
           </span>
           <span>

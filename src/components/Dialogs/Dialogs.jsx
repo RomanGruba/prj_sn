@@ -4,7 +4,7 @@ import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
 
 const Dialogs = props => {
-  let newMessageBody = props.newMessageBody;
+  let newMessageBody = props.dialogsPage.newMessageBody;
 
   let onSendMessageClick = () => {
     props.sendMessageCreator();
@@ -19,13 +19,13 @@ const Dialogs = props => {
     <div className={styles.dialogs}>
       <div className={styles.dialogsItems}>
         {props.dialogsPage.dialogs.map(d => (
-          <DialogItem name={d.name} id={d.id} />
+          <DialogItem key={d.id} name={d.name} id={d.id} />
         ))}
       </div>
       <div className={styles.messages}>
         <div>
           {props.dialogsPage.messages.map(message => (
-            <Message message={message} />
+            <Message key={message.id} message={message} />
           ))}
         </div>
         <div>

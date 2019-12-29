@@ -19,7 +19,6 @@ let mapDispatchToProps = dispatch => {
       dispatch(action);
     },
     addPost: () => {
-      console.log("ddd");
       dispatch(addPostActionCreator());
     }
   };

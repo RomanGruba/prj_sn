@@ -17,6 +17,11 @@ const Sidebar = () => {
           </NavLink>
         </li>
         <li className={styles.item}>
+          <NavLink to="/users" activeClassName={styles.active}>
+            Users
+          </NavLink>
+        </li>
+        <li className={styles.item}>
           <a href="#">News</a>
         </li>
         <li className={styles.item}>

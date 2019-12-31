@@ -9,20 +9,23 @@ export default class UsersC extends Component {
       .get("https://social-network.samuraijs.com/api/1.0/users")
       .then(res => {
         this.props.setUsers(res.data.items);
+        this.props.setTotalUser(res.data.totalCount);
       });
   }
-  getUsers = () => {
-    if (this.props.users.length === 0) {
-      axios
-        .get("https://social-network.samuraijs.com/api/1.0/users")
-        .then(res => {
-          this.props.setUsers(res.data.items);
-        });
-    }
-  };
+
   render() {
+    let pagesCount = this.props.totalUsersCount / this.props.pageSize;
+    let pages = [];
+    for (let i = 1; i <= pagesCount; i++) {
+      pages.push(i);
+    }
     return (
       <div>
+        <div>
+          {pages.map(page => (
+            <span>{page}</span>
+          ))}
+        </div>
         {this.props.users.map(user => (
           <div key={user.id}>
             <span>

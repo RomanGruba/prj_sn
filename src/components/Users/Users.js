@@ -16,7 +16,6 @@ export default class UsersC extends Component {
   }
 
   onPageChanged = page => {
-    console.log(page);
     this.props.setCurrentPage(page);
     axios
       .get(
@@ -42,7 +41,7 @@ export default class UsersC extends Component {
           {pages.map(page => (
             <span
               className={this.props.currentPage === page && styles.selectedPage}
-              onClick={page => this.onPageChanged(page)}
+              onClick={() => this.onPageChanged(page)}
             >
               {page}
             </span>

@@ -8,7 +8,7 @@ let initialState = {
   users: [],
   pageSize: 10,
   totalUsersCount: 0,
-  currentPage: 2
+  currentPage: 1
 };
 
 const usersReducer = (state = initialState, action) => {
@@ -34,7 +34,7 @@ const usersReducer = (state = initialState, action) => {
         })
       };
     case SET_USERS: {
-      return { ...state, users: [...state.users, ...action.users] };
+      return { ...state, users: [...action.users] };
     }
     case SET_USERS_NUMBER: {
       return { ...state, totalUsersCount: action.totalUsersNumber };
@@ -54,6 +54,9 @@ export const totalUsersCountAC = totalUsersNumber => ({
   type: SET_USERS_NUMBER,
   totalUsersNumber
 });
-export const setCurrentPageAC = page => ({ type: SET_CURRENT_PAGE, page });
+export const setCurrentPageAC = currentPage => ({
+  type: SET_CURRENT_PAGE,
+  currentPage
+});
 
 export default usersReducer;

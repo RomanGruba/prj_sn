@@ -6,15 +6,32 @@ import axios from "axios";
 export default class UsersC extends Component {
   componentDidMount() {
     axios
-      .get("https://social-network.samuraijs.com/api/1.0/users")
+      .get(
+        `https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`
+      )
       .then(res => {
         this.props.setUsers(res.data.items);
         this.props.setTotalUser(res.data.totalCount);
       });
   }
 
+  onPageChanged = page => {
+    console.log(page);
+    this.props.setCurrentPage(page);
+    axios
+      .get(
+        `https://social-network.samuraijs.com/api/1.0/users?page=${page}&count=${this.props.pageSize}`
+      )
+      .then(res => {
+        this.props.setUsers(res.data.items);
+        this.props.setTotalUser(res.data.totalCount);
+      });
+  };
+
   render() {
-    let pagesCount = this.props.totalUsersCount / this.props.pageSize;
+    let pagesCount = Math.ceil(
+      this.props.totalUsersCount / this.props.pageSize
+    );
     let pages = [];
     for (let i = 1; i <= pagesCount; i++) {
       pages.push(i);
@@ -23,7 +40,12 @@ export default class UsersC extends Component {
       <div>
         <div>
           {pages.map(page => (
-            <span>{page}</span>
+            <span
+              className={this.props.currentPage === page && styles.selectedPage}
+              onClick={page => this.onPageChanged(page)}
+            >
+              {page}
+            </span>
           ))}
         </div>
         {this.props.users.map(user => (

@@ -1,16 +1,15 @@
 import React, { Component } from "react";
 import Users from "./Users";
 import {
-  followAC,
-  unfollowAC,
-  setUsersAC,
-  totalUsersCountAC,
-  setCurrentPageAC,
-  setIsFetchingAC
+  follow,
+  unfollow,
+  setUsers,
+  setTotalUser,
+  setCurrentPage,
+  showPreloader
 } from "./../../redux/usersReducer";
 import { connect } from "react-redux";
 import axios from "axios";
-import loader from "../../assets/images/Loader.gif";
 import Preloader from "../common/Preloader/Preloader";
 
 class UsersContainer extends Component {
@@ -68,15 +67,22 @@ let mapStateToProps = state => {
   };
 };
 
-let mapDispatchToProps = dispatch => {
-  return {
-    follow: userId => dispatch(followAC(userId)),
-    unfollow: userId => dispatch(unfollowAC(userId)),
-    setUsers: users => dispatch(setUsersAC(users)),
-    setTotalUser: totalUsers => dispatch(totalUsersCountAC(totalUsers)),
-    setCurrentPage: page => dispatch(setCurrentPageAC(page)),
-    showPreloader: status => dispatch(setIsFetchingAC(status))
-  };
-};
+// let mapDispatchToProps = dispatch => {
+//   return {
+//     follow: userId => dispatch(followAC(userId)),
+//     unfollow: userId => dispatch(unfollowAC(userId)),
+//     setUsers: users => dispatch(setUsersAC(users)),
+//     setTotalUser: totalUsers => dispatch(totalUsersCountAC(totalUsers)),
+//     setCurrentPage: page => dispatch(setCurrentPageAC(page)),
+//     showPreloader: status => dispatch(setIsFetchingAC(status))
+//   };
+// };
 
-export default connect(mapStateToProps, mapDispatchToProps)(UsersContainer);
+export default connect(mapStateToProps, {
+  follow,
+  unfollow,
+  setUsers,
+  setTotalUser,
+  setCurrentPage,
+  showPreloader
+})(UsersContainer);

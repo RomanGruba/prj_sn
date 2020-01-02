@@ -11,6 +11,7 @@ import {
 import { connect } from "react-redux";
 import axios from "axios";
 import loader from "../../assets/images/Loader.gif";
+import Preloader from "../common/Preloader/Preloader";
 
 class UsersContainer extends Component {
   componentDidMount() {
@@ -42,7 +43,7 @@ class UsersContainer extends Component {
   render() {
     return (
       <>
-        {this.props.isFetching ? <img src={loader} /> : null}
+        {this.props.isFetching ? <Preloader /> : null}
         <Users
           totalUsersCount={this.props.totalUsersCount}
           pageSize={this.props.pageSize}

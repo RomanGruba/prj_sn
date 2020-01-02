@@ -10,15 +10,17 @@ class ProfileContainer extends Component {
       .get(`https://social-network.samuraijs.com/api/1.0/profile/2`)
       .then(res => {
         this.props.setUserProfile(res.data);
-        console.log(res.data);
       });
   }
 
   render() {
-    return <Profile {...this.props} />;
+    console.log(this.props.profile);
+    return <Profile {...this.props} profile={this.props.profile} />;
   }
 }
 
-let mapStateToProps = state => ({});
+let mapStateToProps = state => ({
+  profile: state.profilePage.profile
+});
 
 export default connect(mapStateToProps, { setUserProfile })(ProfileContainer);

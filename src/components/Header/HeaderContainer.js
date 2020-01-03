@@ -7,10 +7,14 @@ import { setAuthUserData } from "../../redux/authReducer";
 class HeaderContainer extends Component {
   componentDidMount() {
     axios
-      .get("https://social-network.samuraijs.com/api/1.0/auth/me")
+      .get("https://social-network.samuraijs.com/api/1.0/auth/me", {
+        withCredentials: true
+      })
       .then(res => {
-        debugger;
-        console.log(res);
+        if (res.data.resultCode === 0) {
+          let { id, email, login } = res.data.data;
+          this.props.setAuthUserData(id, email, login);
+        }
       });
   }
 
@@ -20,7 +24,8 @@ class HeaderContainer extends Component {
 }
 
 let mapStateToProps = state => ({
-  isAuth: state.auth.isAuth
+  isAuth: state.auth.isAuth,
+  login: state.auth.login
 });
 
 export default connect(mapStateToProps, { setAuthUserData })(HeaderContainer);

@@ -12,7 +12,7 @@ const Users = props => {
   }
 
   let followUser = userID => {
-    props.toggleFollowingProgress(true);
+    props.toggleFollowingProgress(true, userID);
     axios
       .post(
         "https://social-network.samuraijs.com/api/1.0/follow/" + userID,
@@ -26,12 +26,12 @@ const Users = props => {
         if (res.data.resultCode == 0) {
           props.follow(userID);
         }
-        props.toggleFollowingProgress(false);
+        props.toggleFollowingProgress(false, userID);
       });
   };
 
   let unfollowUser = userID => {
-    props.toggleFollowingProgress(true);
+    props.toggleFollowingProgress(true, userID);
     axios
       .delete("https://social-network.samuraijs.com/api/1.0/follow/" + userID, {
         withCredentials: true,
@@ -41,7 +41,7 @@ const Users = props => {
         if (res.data.resultCode == 0) {
           props.unfollow(userID);
         }
-        props.toggleFollowingProgress(false);
+        props.toggleFollowingProgress(false, userID);
       });
   };
 
@@ -74,14 +74,18 @@ const Users = props => {
             <div>
               {user.followed ? (
                 <button
-                  disabled={props.followingInProgress}
+                  disabled={props.followingInProgress.some(
+                    el => el === user.id
+                  )}
                   onClick={() => unfollowUser(user.id)}
                 >
                   Unfollow
                 </button>
               ) : (
                 <button
-                  disabled={props.followingInProgress}
+                  disabled={props.followingInProgress.some(
+                    el => el === user.id
+                  )}
                   onClick={() => followUser(user.id)}
                 >
                   Follow

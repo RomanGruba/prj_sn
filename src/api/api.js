@@ -11,11 +11,15 @@ export const usersAPI = {
     return instance
       .get(`users?page=${currentPage}&count=${pageSize}`)
       .then(res => res.data);
+  },
+
+  followUser(userID) {
+    return instance.post("follow/" + userID).then(res => res.data);
+  },
+
+  unfollowUser(userID) {
+    return instance
+      .delete("https://social-network.samuraijs.com/api/1.0/follow/" + userID)
+      .then(res => res.data);
   }
 };
-
-// export const getUsers = (currentPage = 1, pageSize = 10) => {
-//   return instance
-//     .get(`users?page=${currentPage}&count=${pageSize}`)
-//     .then(res => res.data);
-// };

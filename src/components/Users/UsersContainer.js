@@ -8,7 +8,7 @@ import {
   setCurrentPage,
   showPreloader,
   toggleFollowingProgress,
-  getUsersThunkCreator
+  getUsers
 } from "./../../redux/usersReducer";
 import { connect } from "react-redux";
 import Preloader from "../common/Preloader/Preloader";
@@ -57,5 +57,5 @@ export default connect(mapStateToProps, {
   unfollow,
   setCurrentPage,
   toggleFollowingProgress,
-  getUsers: getUsersThunkCreator
+  getUsers
 })(UsersContainer);

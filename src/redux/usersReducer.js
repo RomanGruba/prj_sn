@@ -1,3 +1,5 @@
+import { usersAPI } from "../api/api";
+
 const FOLLOW = "FOLLOW";
 const UNFOLLOW = "UNFOLLOW";
 const SET_USERS = "SET_USERS";
@@ -82,5 +84,17 @@ export const toggleFollowingProgress = (isFetchingStatus, userId) => ({
   isFetchingStatus,
   userId
 });
+
+export const getUsersThunkCreator = (currentPage, pageSize) => {
+  return dispatch => {
+    dispatch(showPreloader(true));
+    usersAPI.getUsers(currentPage, pageSize).then(data => {
+      dispatch(setUsers(data.items));
+      dispatch(setTotalUser(data.totalCount));
+      dispatch(showPreloader(false));
+      dispatch(setCurrentPage(currentPage));
+    });
+  };
+};
 
 export default usersReducer;

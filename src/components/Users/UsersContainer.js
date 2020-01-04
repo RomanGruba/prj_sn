@@ -7,33 +7,19 @@ import {
   setTotalUser,
   setCurrentPage,
   showPreloader,
-  toggleFollowingProgress
+  toggleFollowingProgress,
+  getUsersThunkCreator
 } from "./../../redux/usersReducer";
 import { connect } from "react-redux";
 import Preloader from "../common/Preloader/Preloader";
-import { usersAPI } from "../../api/api";
 
 class UsersContainer extends Component {
   componentDidMount() {
-    this.props.showPreloader(true);
-    usersAPI
-      .getUsers(this.props.currentPage, this.props.pageSize)
-      .then(data => {
-        this.props.setUsers(data.items);
-        this.props.setTotalUser(data.totalCount);
-        this.props.showPreloader(false);
-      });
+    this.props.getUsers(this.props.currentPage, this.props.pageSize);
   }
 
   onPageChanged = page => {
-    this.props.showPreloader(true);
-    this.props.setCurrentPage(page);
-
-    usersAPI.getUsers(page, this.props.pageSize).then(data => {
-      this.props.setUsers(data.items);
-      this.props.setTotalUser(data.totalCount);
-      this.props.showPreloader(false);
-    });
+    this.props.getUsers(page, this.props.pageSize);
   };
   render() {
     return (
@@ -69,9 +55,7 @@ let mapStateToProps = state => {
 export default connect(mapStateToProps, {
   follow,
   unfollow,
-  setUsers,
-  setTotalUser,
   setCurrentPage,
-  showPreloader,
-  toggleFollowingProgress
+  toggleFollowingProgress,
+  getUsers: getUsersThunkCreator
 })(UsersContainer);

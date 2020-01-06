@@ -2,7 +2,6 @@ import React from "react";
 import styles from "./Dialogs.module.css";
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
-import { Redirect } from "react-router-dom";
 import { Field, reduxForm } from "redux-form";
 
 const Dialogs = props => {
@@ -17,7 +16,9 @@ const Dialogs = props => {
     props.updateNewMessageBodyCreator(text);
   };
 
-  if (!props.isAuth) return <Redirect to={"/login"} />;
+  let addNewMessage = values => {
+    props.sendMessageCreator(values.newMessageBody);
+  };
 
   return (
     <div className={styles.dialogs}>
@@ -32,7 +33,7 @@ const Dialogs = props => {
             <Message key={message.id} message={message} />
           ))}
         </div>
-        <AddMessageFormRedux />
+        <AddMessageFormRedux onSubmit={addNewMessage} />
       </div>
     </div>
   );

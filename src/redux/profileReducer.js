@@ -21,7 +21,7 @@ const profileReducer = (state = initialState, action) => {
     case ADD_POST:
       let newPost = {
         id: 5,
-        message: state.newPostText,
+        message: action.message,
         likesCount: 0
       };
       let stateCopy = { ...state };
@@ -46,7 +46,7 @@ const profileReducer = (state = initialState, action) => {
   }
 };
 
-export const addPostActionCreator = () => ({ type: "ADD_POST" });
+export const addPostActionCreator = message => ({ type: "ADD_POST", message });
 export const updateNewPostActionCreator = message => ({
   type: "UPDATE_NEW_POST_TEXT",
   text: message

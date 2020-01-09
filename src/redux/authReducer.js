@@ -12,7 +12,7 @@ let initialState = {
 const authReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_USER_DATA:
-      return { ...state, ...action.data, isAuth: true };
+      return { ...state, ...action.data };
     default:
       return state;
   }
@@ -32,10 +32,13 @@ export const getAuthUserData = () => dispatch => {
   });
 };
 
+// rg0969246941@gmail.com
+
 export const login = (email, password, rememberMe) => dispatch => {
   authAPI.login(email, password, rememberMe).then(res => {
     if (res.data.resultCode === 0) {
       dispatch(getAuthUserData());
+      console.log("ddddd");
     }
   });
 };
@@ -43,6 +46,7 @@ export const login = (email, password, rememberMe) => dispatch => {
 export const logout = () => dispatch => {
   authAPI.logout().then(res => {
     if (res.data.resultCode === 0) {
+      console.log("2222");
       dispatch(setAuthUserData(null, null, null, false));
     }
   });

@@ -48,6 +48,6 @@ export const authAPI = {
     return instance.post("auth/login", { email, password, rememberMe });
   },
   logout() {
-    return instance.post("auth/login");
+    return instance.delete("auth/login");
   }
 };

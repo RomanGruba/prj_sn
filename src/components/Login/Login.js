@@ -2,6 +2,8 @@ import React from "react";
 import { Field, reduxForm } from "redux-form";
 import { Input } from "../../components/common/FormsControls/FormsControls";
 import { maxLengthCreator } from "../../utils/validators/validators";
+import { connect } from "react-redux";
+import { login } from "../../redux/authReducer";
 
 const maxLength10 = maxLengthCreator(10);
 
@@ -47,4 +49,4 @@ const Login = props => {
   );
 };
 
-export default Login;
+export default connect(null, { login })(Login);

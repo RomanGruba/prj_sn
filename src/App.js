@@ -11,12 +11,16 @@ import { connect } from "react-redux";
 import { getAuthUserData } from "../src/redux/authReducer";
 import { compose } from "redux";
 import { withRouter } from "react-router-dom";
+import Preloader from "./components/common/Preloader/Preloader";
+import { initializeApp } from "./redux/appReducer";
 
 class App extends Component {
   componentDidMount() {
-    this.props.getAuthUserData();
+    this.props.initializeApp();
   }
   render() {
+    if (!this.props.initialized) return <Preloader />;
+    // debugger;
     return (
       <BrowserRouter>
         <div className="app-wrapper">
@@ -37,4 +41,11 @@ class App extends Component {
   }
 }
 
-export default compose(withRouter, connect(null, { getAuthUserData }))(App);
+const mapStateToProps = state => ({
+  initialized: state.app.initialized
+});
+
+export default compose(
+  withRouter,
+  connect(mapStateToProps, { initializeApp })
+)(App);

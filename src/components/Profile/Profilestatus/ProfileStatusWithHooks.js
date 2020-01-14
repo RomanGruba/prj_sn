@@ -1,22 +1,20 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 
-const ProfileStatusWithHooks = state => {
+const ProfileStatusWithHooks = props => {
+  let stateWithSetState = useState(false);
+  let editMode = stateWithSetState[0];
+  let setEditMode = stateWithSetState[1];
+
   return (
     <>
-      {true && (
+      {!editMode && (
         <div>
-          <span onDoubleClick={activateEditMode}>{props.status}</span>
+          <span>{props.status || "-------"}</span>
         </div>
       )}
-      {false && (
+      {editMode && (
         <div>
-          <input
-            onChange={onStatusChange}
-            autoFocus
-            onBlur={deActivateEditMode}
-            value={state.status}
-            type="text"
-          />
+          <input autoFocus type="text" />
         </div>
       )}
     </>

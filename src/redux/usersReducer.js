@@ -86,38 +86,38 @@ export const toggleFollowingProgress = (isFetchingStatus, userId) => ({
 });
 
 export const requestUsers = (currentPage, pageSize) => {
-  return dispatch => {
+  return async dispatch => {
     dispatch(showPreloader(true));
-    usersAPI.getUsers(currentPage, pageSize).then(data => {
-      dispatch(setUsers(data.items));
-      dispatch(setTotalUser(data.totalCount));
-      dispatch(showPreloader(false));
-      dispatch(setCurrentPage(currentPage));
-    });
+    let data = await usersAPI.getUsers(currentPage, pageSize);
+
+    dispatch(setUsers(data.items));
+    dispatch(setTotalUser(data.totalCount));
+    dispatch(showPreloader(false));
+    dispatch(setCurrentPage(currentPage));
   };
 };
 
 export const follow = userID => {
-  return dispatch => {
+  return async dispatch => {
     dispatch(toggleFollowingProgress(true, userID));
-    usersAPI.followUser(userID).then(res => {
-      if (res.resultCode === 0) {
-        dispatch(followSuccess(userID));
-      }
-      dispatch(toggleFollowingProgress(false, userID));
-    });
+    let res = await usersAPI.followUser(userID);
+
+    if (res.resultCode === 0) {
+      dispatch(followSuccess(userID));
+    }
+    dispatch(toggleFollowingProgress(false, userID));
   };
 };
 
 export const unfollow = userID => {
-  return dispatch => {
+  return async dispatch => {
     dispatch(toggleFollowingProgress(true, userID));
-    usersAPI.unfollowUser(userID).then(res => {
-      if (res.resultCode === 0) {
-        dispatch(unfollowSuccess(userID));
-      }
-      dispatch(toggleFollowingProgress(false, userID));
-    });
+    let res = await usersAPI.unfollowUser(userID);
+
+    if (res.resultCode === 0) {
+      dispatch(unfollowSuccess(userID));
+    }
+    dispatch(toggleFollowingProgress(false, userID));
   };
 };
 

@@ -4,6 +4,7 @@ const ADD_POST = "ADD_POST";
 const UPDATE_NEW_POST_TEXT = "UPDATE_NEW_POST_TEXT";
 const SET_USER_PROFILE = "SET_USER_PROFILE";
 const SET_USER_STATUS = "SET_USER_STATUS";
+const DELETE_POST = "DELETE_POST";
 
 let initialState = {
   posts: [
@@ -41,12 +42,22 @@ const profileReducer = (state = initialState, action) => {
     case SET_USER_STATUS: {
       return { ...state, status: action.status };
     }
+    case DELETE_POST: {
+      return {
+        ...state,
+        posts: state.posts.filter(p => p.id !== action.postId)
+      };
+    }
     default:
       return state;
   }
 };
 
 export const addPostActionCreator = message => ({ type: "ADD_POST", message });
+export const deletePostActionCreator = postId => ({
+  type: "DELETE_POST",
+  postId
+});
 export const updateNewPostActionCreator = message => ({
   type: "UPDATE_NEW_POST_TEXT",
   text: message

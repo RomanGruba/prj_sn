@@ -22,21 +22,16 @@ class App extends Component {
     if (!this.props.initialized) return <Preloader />;
     // debugger;
     return (
-      <BrowserRouter>
-        <div className="app-wrapper">
-          <HeaderContainer />
-          <Sidebar />
-          <div className="app-wrapper_content">
-            <Route
-              path="/profile/:userId?"
-              render={() => <ProfileContainer />}
-            />
-            <Route path="/dialogs" render={() => <DialogsContainer />} />
-            <Route path="/users" render={() => <UsersContainer />} />
-            <Route path="/login" render={() => <Login />} />
-          </div>
+      <div className="app-wrapper">
+        <HeaderContainer />
+        <Sidebar />
+        <div className="app-wrapper_content">
+          <Route path="/profile/:userId?" render={() => <ProfileContainer />} />
+          <Route path="/dialogs" render={() => <DialogsContainer />} />
+          <Route path="/users" render={() => <UsersContainer />} />
+          <Route path="/login" render={() => <Login />} />
         </div>
-      </BrowserRouter>
+      </div>
     );
   }
 }
